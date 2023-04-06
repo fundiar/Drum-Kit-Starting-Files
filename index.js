@@ -3,14 +3,16 @@ var buttonsLength = document.querySelectorAll(".drum").length;
 
 for (var i = 0; i < buttonsLength; i++) {
     
-    document.querySelectorAll(".drum")[i].addEventListener("click", function () {
-        var innerhtml = this.innerHTML;
-        makesound(innerhtml);
-    }
-    );
+    // document.querySelectorAll(".drum")[i].addEventListener("click", function () {
+    //     var innerhtml = this.innerHTML;
+    //     makesound(innerhtml);
+    //     buttonAnimation(innerhtml);
+    // }
+    // );
 
     document.addEventListener("keypress", function (evt) {
         makesound(evt.key);
+        buttonAnimation(evt.key);
     }
     );
 }
@@ -55,4 +57,13 @@ function makesound(event) {
         
         default:
     }
+}
+
+function buttonAnimation(key) {
+    var activeButton = document.querySelector("." + key);
+    activeButton.classList.add("pressed");
+    
+    setTimeout(function () {
+        activeButton.classList.remove("pressed");
+    }, 100);
 }
